@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 
 const cards = [
   { id: 1, title: 'React', description: 'The library for web and native user interfaces', url: 'https://react.dev' },
@@ -25,6 +25,7 @@ const cards = [
 
 function SearchPage() {
   const [query, setQuery] = useState('');
+  const inputRef = useRef(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -39,13 +40,35 @@ function SearchPage() {
   return (
     <div className="SearchPage">
       <h1>Search Cards</h1>
-      <input
-        className="SearchInput"
-        type="text"
-        placeholder="Search by title, description, or URL..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+      <div className="SearchBar">
+        <input
+          ref={inputRef}
+          className="SearchInput"
+          type="text"
+          placeholder="Search by title, description, or URL..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape' && query) {
+              setQuery('');
+              requestAnimationFrame(() => inputRef.current?.focus());
+            }
+          }}
+        />
+        {query && (
+          <button
+            className="CancelButton"
+            type="button"
+            aria-label="Clear search"
+            onClick={() => {
+              setQuery('');
+              requestAnimationFrame(() => inputRef.current?.focus());
+            }}
+          >
+            Cancel
+          </button>
+        )}
+      </div>
       <div className="CardGrid">
         {filtered.map(card => (
           <div key={card.id} className="Card">
