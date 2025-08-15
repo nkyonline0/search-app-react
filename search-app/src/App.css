@@ -1,0 +1,63 @@
+.App {
+  text-align: center;
+  padding: 24px;
+}
+
+.SearchPage h1 {
+  margin-bottom: 16px;
+}
+
+.SearchInput {
+  width: 100%;
+  max-width: 520px;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  outline: none;
+}
+
+.SearchInput:focus {
+  border-color: #0969da;
+  box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.2);
+}
+
+.CardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.Card {
+  text-align: left;
+  border: 1px solid #eaeef2;
+  border-radius: 10px;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.CardTitle {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.CardDescription {
+  margin: 0 0 12px 0;
+  color: #57606a;
+}
+
+.CardLink {
+  color: #0969da;
+  text-decoration: none;
+}
+
+.CardLink:hover {
+  text-decoration: underline;
+}
+
+.EmptyState {
+  grid-column: 1/-1;
+  color: #57606a;
+}
